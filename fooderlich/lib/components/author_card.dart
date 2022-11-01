@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../fooderlich_theme.dart';
 import 'circle_image.dart';
-import 'fooderlich_theme.dart';
 
 class AuthorCard extends StatefulWidget {
   final String authorName;
   final String title;
   final ImageProvider? imageProvider;
+
   const AuthorCard({
     super.key,
     required this.authorName,
@@ -15,11 +16,12 @@ class AuthorCard extends StatefulWidget {
   });
 
   @override
-  State<AuthorCard> createState() => _AuthorCardState();
+  AuthorCardState createState() => AuthorCardState();
 }
 
-class _AuthorCardState extends State<AuthorCard> {
+class AuthorCardState extends State<AuthorCard> {
   bool _isFavorited = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(

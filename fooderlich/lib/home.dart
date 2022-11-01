@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'card1.dart';
-import 'card2.dart';
-import 'card3.dart';
-
 class Home extends StatefulWidget {
   const Home({super.key});
   @override
@@ -13,9 +9,9 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   int _selectedIndex = 0;
   static List<Widget> pages = <Widget>[
-    const Card1(),
-    const Card2(),
-    const Card3(),
+    Container(color: Colors.red),
+    Container(color: Colors.green),
+    Container(color: Colors.blue),
   ];
   void _onItemTapped(int index) {
     setState(() {
