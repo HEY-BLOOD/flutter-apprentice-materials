@@ -6,6 +6,8 @@ import 'recipe_model.dart';
 import 'model_response.dart';
 import 'model_converter.dart';
 
+part 'recipe_service.chopper.dart';
+
 const String apiKey = '35abbbb8d99cd62a15a95a4b227efc8f';
 const String apiId = '832a5f8e';
 const String apiUrl = 'https://api.edamam.com/search';
