@@ -18,7 +18,11 @@ class AppRouter {
     refreshListenable: appStateManager,
     initialLocation: '/login',
     routes: [
-      // TODO: Add Login Route
+      GoRoute(
+        name: 'login',
+        path: '/login',
+        builder: (context, state) => const LoginScreen(),
+      ),
       // TODO: Add Onboarding Route
       // TODO: Add Home Route
     ],
