@@ -98,35 +98,33 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           style: GoogleFonts.lato(fontWeight: FontWeight.w600),
         ),
       ),
-      body: Container(
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            buildNameField(),
-            buildImportanceField(),
-            buildDateField(context),
-            buildTimeField(context),
-            buildColorPicker(context),
-            const SizedBox(height: 10.0),
-            buildQuantityField(),
-            GroceryTile(
-              item: GroceryItem(
-                id: 'previewMode',
-                name: _name,
-                importance: _importance,
-                color: _currentColor,
-                quantity: _currentSliderValue,
-                date: DateTime(
-                  _dueDate.year,
-                  _dueDate.month,
-                  _dueDate.day,
-                  _timeOfDay.hour,
-                  _timeOfDay.minute,
-                ),
+        children: [
+          buildNameField(),
+          buildImportanceField(),
+          buildDateField(context),
+          buildTimeField(context),
+          buildColorPicker(context),
+          const SizedBox(height: 10.0),
+          buildQuantityField(),
+          GroceryTile(
+            item: GroceryItem(
+              id: 'previewMode',
+              name: _name,
+              importance: _importance,
+              color: _currentColor,
+              quantity: _currentSliderValue,
+              date: DateTime(
+                _dueDate.year,
+                _dueDate.month,
+                _dueDate.day,
+                _timeOfDay.hour,
+                _timeOfDay.minute,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
