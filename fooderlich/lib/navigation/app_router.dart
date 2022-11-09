@@ -67,7 +67,11 @@ class AppRouter {
               );
             },
             routes: [
-              // TODO: Add Webview subroute
+              GoRoute(
+                name: 'rw',
+                path: 'rw',
+                builder: (context, state) => const WebViewScreen(),
+              ),
             ],
           ),
         ],
