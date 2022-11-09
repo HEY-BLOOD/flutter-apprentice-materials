@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+
 import '../components/components.dart';
 import '../models/models.dart';
 
 class FriendPostTile extends StatelessWidget {
   final Post post;
+
   const FriendPostTile({
     super.key,
     required this.post,
   });
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,7 +29,7 @@ class FriendPostTile extends StatelessWidget {
               Text(post.comment),
               Text(
                 '${post.timestamp} mins ago',
-                style: const TextStyle(fontWeight: FontWeight.w700),
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ],
           ),

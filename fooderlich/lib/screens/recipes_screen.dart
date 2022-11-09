@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import '../models/models.dart';
+
 import '../api/mock_fooderlich_service.dart';
 import '../components/components.dart';
+import '../models/models.dart';
 
 class RecipesScreen extends StatelessWidget {
   final exploreService = MockFooderlichService();
+
   RecipesScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -14,7 +17,9 @@ class RecipesScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return RecipesGridView(recipes: snapshot.data ?? []);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );
