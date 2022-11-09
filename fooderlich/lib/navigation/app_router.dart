@@ -23,7 +23,11 @@ class AppRouter {
         path: '/login',
         builder: (context, state) => const LoginScreen(),
       ),
-      // TODO: Add Onboarding Route
+      GoRoute(
+        name: 'onboarding',
+        path: '/onboarding',
+        builder: (context, state) => const OnboardingScreen(),
+      ),
       // TODO: Add Home Route
     ],
     errorPageBuilder: (context, state) {
