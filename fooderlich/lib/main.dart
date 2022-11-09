@@ -20,7 +20,7 @@ class Fooderlich extends StatelessWidget {
         home: MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (context) => TabManager()),
-            // TODO: Add GroceryManager Provider
+            ChangeNotifierProvider(create: (context) => GroceryManager())
           ],
           child: const Home(),
         ));
