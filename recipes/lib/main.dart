@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'data/memory_repository.dart';
 import 'data/repository.dart';
-import 'mock_service/mock_service.dart';
+import 'network/recipe_service.dart';
 import 'network/service_interface.dart';
 import 'ui/main_screen.dart';
 
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           create: (_) => MemoryRepository(),
         ),
         Provider<ServiceInterface>(
-          create: (_) => MockService()..create(),
+          create: (_) => RecipeService.create(),
           lazy: false,
         ),
       ],
