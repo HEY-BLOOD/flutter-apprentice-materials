@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:chopper/chopper.dart';
 
 import 'model_response.dart';
@@ -14,6 +13,7 @@ class ModelConverter implements Converter {
       jsonHeaders,
       override: false,
     );
+
     return encodeJson(req);
   }
 

@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:provider/provider.dart';
-import 'package:recipes/data/memory_repository.dart';
 
+import 'package:provider/provider.dart';
+import 'data/memory_repository.dart';
 import 'mock_service/mock_service.dart';
 import 'ui/main_screen.dart';
 
@@ -16,11 +16,9 @@ Future<void> main() async {
 
 void _setupLogging() {
   Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen(
-    (rec) {
-      log('${rec.level.name}: ${rec.time}: ${rec.message}');
-    },
-  );
+  Logger.root.onRecord.listen((rec) {
+    log('${rec.level.name}: ${rec.time}: ${rec.message}');
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -31,13 +29,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        // TODO: Update ChangeNotifierProvider
+        ChangeNotifierProvider<MemoryRepository>(
           lazy: false,
-          create: ((context) => MemoryRepository()),
+          create: (_) => MemoryRepository(),
         ),
         Provider(
+          create: (_) => MockService()..create(),
           lazy: false,
-          create: ((context) => MockService()..create()),
         ),
       ],
       child: MaterialApp(
