@@ -6,7 +6,6 @@ import 'database_helper.dart';
 
 class SqliteRepository extends Repository {
   final dbHelper = DatabaseHelper.instance;
-// TODO: Add methods to use dbHelper here
   @override
   Future<List<Recipe>> findAllRecipes() {
     return dbHelper.findAllRecipes();
