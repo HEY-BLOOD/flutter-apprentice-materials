@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'colors.dart';
 import 'myrecipes/my_recipes_list.dart';
 import 'recipes/recipe_list.dart';
 import 'shopping/shopping_list.dart';
-import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -16,42 +16,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  static const String prefSelectedIndexKey = 'selectedIndex';
   int _selectedIndex = 0;
   List<Widget> pageList = <Widget>[];
-  static const String prefSelectedIndexKey = 'selectedIndex';
-
-  @override
-  void initState() {
-    super.initState();
-    pageList.add(const RecipeList());
-    pageList.add(const MyRecipesList());
-    pageList.add(const ShoppingList());
-    getCurrentIndex();
-  }
-
-  void saveCurrentIndex() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt(prefSelectedIndexKey, _selectedIndex);
-  }
-
-  void getCurrentIndex() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (prefs.containsKey(prefSelectedIndexKey)) {
-      setState(() {
-        final index = prefs.getInt(prefSelectedIndexKey);
-        if (index != null) {
-          _selectedIndex = index;
-        }
-      });
-    }
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    saveCurrentIndex();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,5 +96,38 @@ class _MainScreenState extends State<MainScreen> {
         children: pageList,
       ),
     );
+  }
+
+  void getCurrentIndex() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey(prefSelectedIndexKey)) {
+      setState(() {
+        final index = prefs.getInt(prefSelectedIndexKey);
+        if (index != null) {
+          _selectedIndex = index;
+        }
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    pageList.add(const RecipeList());
+    pageList.add(const MyRecipesList());
+    pageList.add(const ShoppingList());
+    getCurrentIndex();
+  }
+
+  void saveCurrentIndex() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt(prefSelectedIndexKey, _selectedIndex);
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    saveCurrentIndex();
   }
 }

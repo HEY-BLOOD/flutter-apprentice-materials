@@ -1,30 +1,32 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import '../data/models/models.dart';
 
 part 'recipe_model.g.dart';
 
-@JsonSerializable()
-class APIRecipeQuery {
-  factory APIRecipeQuery.fromJson(Map<String, dynamic> json) =>
-      _$APIRecipeQueryFromJson(json);
+List<Ingredient> convertIngredients(List<APIIngredients> apiIngredients) {
+  final ingredients = <Ingredient>[];
+  for (final ingredient in apiIngredients) {
+    ingredients.add(Ingredient(
+      name: ingredient.name,
+      weight: ingredient.weight,
+    ));
+  }
+  return ingredients;
+}
 
-  Map<String, dynamic> toJson() => _$APIRecipeQueryToJson(this);
-  @JsonKey(name: 'q')
-  String query;
-  int from;
-  int to;
-  bool more;
-  int count;
-  List<APIHits> hits;
+String getCalories(double? calories) {
+  if (calories == null) {
+    return '0 KCAL';
+  }
+  return '${calories.floor()} KCAL';
+}
 
-  APIRecipeQuery({
-    required this.query,
-    required this.from,
-    required this.to,
-    required this.more,
-    required this.count,
-    required this.hits,
-  });
+String getWeight(double? weight) {
+  if (weight == null) {
+    return '0g';
+  }
+  return '${weight.floor()}g';
 }
 
 @JsonSerializable()
@@ -35,12 +37,27 @@ class APIHits {
     required this.recipe,
   });
 
-  factory APIHits.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory APIHits.fromJson(Map<String, dynamic> json) =>
       _$APIHitsFromJson(json);
 
   Map<String, dynamic> toJson() => _$APIHitsToJson(this);
+}
+
+@JsonSerializable()
+class APIIngredients {
+  @JsonKey(name: 'text')
+  String name;
+  double weight;
+
+  APIIngredients({
+    required this.name,
+    required this.weight,
+  });
+
+  factory APIIngredients.fromJson(Map<String, dynamic> json) =>
+      _$APIIngredientsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$APIIngredientsToJson(this);
 }
 
 @JsonSerializable()
@@ -69,46 +86,26 @@ class APIRecipe {
   Map<String, dynamic> toJson() => _$APIRecipeToJson(this);
 }
 
-String getCalories(double? calories) {
-  if (calories == null) {
-    return '0 KCAL';
-  }
-  return '${calories.floor()} KCAL';
-}
-
-String getWeight(double? weight) {
-  if (weight == null) {
-    return '0g';
-  }
-  return '${weight.floor()}g';
-}
-
 @JsonSerializable()
-class APIIngredients {
-  @JsonKey(name: 'text')
-  String name;
-  double weight;
+class APIRecipeQuery {
+  @JsonKey(name: 'q')
+  String query;
 
-  APIIngredients({
-    required this.name,
-    required this.weight,
+  int from;
+  int to;
+  bool more;
+  int count;
+  List<APIHits> hits;
+  APIRecipeQuery({
+    required this.query,
+    required this.from,
+    required this.to,
+    required this.more,
+    required this.count,
+    required this.hits,
   });
+  factory APIRecipeQuery.fromJson(Map<String, dynamic> json) =>
+      _$APIRecipeQueryFromJson(json);
 
-  factory APIIngredients.fromJson(Map<String, dynamic> json) =>
-      _$APIIngredientsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$APIIngredientsToJson(this);
-}
-
-List<Ingredient> convertIngredients(List<APIIngredients> apiIngredients) {
-  final ingredients = <Ingredient>[];
-  for (final ingredient in apiIngredients) {
-    ingredients.add(
-      Ingredient(
-        name: ingredient.name,
-        weight: ingredient.weight,
-      ),
-    );
-  }
-  return ingredients;
+  Map<String, dynamic> toJson() => _$APIRecipeQueryToJson(this);
 }

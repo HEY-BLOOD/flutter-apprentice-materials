@@ -7,9 +7,9 @@ import 'service_interface.dart';
 
 part 'recipe_service.chopper.dart';
 
-const String apiId = '832a5f8e';
-const String apiKey = '35abbbb8d99cd62a15a95a4b227efc8f';
-const String apiUrl = 'https://api.edamam.com/';
+const String apiId = '<Your Id here>';
+const String apiKey = '<Your Key Here>';
+const String apiUrl = 'https://api.edamam.com';
 
 Request _addQuery(Request req) {
   final params = Map<String, dynamic>.from(req.parameters);
