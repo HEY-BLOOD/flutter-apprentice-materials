@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,12 @@ import 'ui/main_screen.dart';
 
 Future<void> main() async {
   _setupLogging();
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  Future.delayed(const Duration(milliseconds: 1500), () {
+    FlutterNativeSplash.remove();
+  });
 
   final repository = MoorRepository();
   await repository.init();

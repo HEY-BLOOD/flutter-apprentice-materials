@@ -52,6 +52,7 @@ dependencies:
   sqlbrite: ^2.5.0
   path: ^1.8.2
   moor_flutter: ^4.1.0
+  flutter_native_splash: ^2.2.16
 
 dev_dependencies:
   flutter_test:
